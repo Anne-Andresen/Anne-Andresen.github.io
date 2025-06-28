@@ -3,198 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anne Andresen | Deep Learning for Healthcare</title>
+  <title>Anne Andresen | Deep Learning for Healthcare</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* ============================== */
+    /*           1.  RESET            */
+    /* ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; line-height: 1.55; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ============================== */
+    /*        2.  THEME COLORS        */
+    /* ============================== */
     :root {
-      --clr-bg: #f9fafb;
-      --clr-primary: #111827;
-      --clr-accent: #3b82f6;
-      --clr-muted: #6b7280;
+      --clr-sidebar: #1e293b; /* slate‑800 */
+      --clr-sidebar-text: #f1f5f9; /* slate‑100 */
+      --clr-bg: #f8fafc; /* slate‑50 */
+      --clr-card-bg: #ffffff;
+      --clr-accent: #3b82f6; /* blue‑500 */
+      --clr-muted: #64748b; /* slate‑400 */
+      --sidebar-width: 260px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: var(--clr-bg);
-      color: var(--clr-primary);
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-
-    a {
-      color: var(--clr-accent);
-      text-decoration: none;
-    }
-
-    header {
-      background: #ffffff;
-      padding: 2rem 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    header .container {
-      max-width: 1024px;
-      margin: auto;
+    /* ============================== */
+    /*       3.  LAYOUT WRAPPER       */
+    /* ============================== */
+    .wrapper {
       display: flex;
-      justify-content: space-between;
+      min-height: 100vh;
+      background: var(--clr-bg);
+    }
+
+    /* ----------  SIDEBAR  ---------- */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--clr-sidebar);
+      color: var(--clr-sidebar-text);
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      flex-wrap: wrap;
+      padding: 2rem 1rem;
+    }
+    .avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--clr-accent);
+      margin-bottom: 1.5rem;
+    }
+    .name { font-size: 1.5rem; font-weight: 700; text-align: center; }
+    .tagline { font-size: 0.9rem; color: var(--clr-muted); text-align: center; margin-bottom: 1.5rem; }
+    .socials {
+      display: flex; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .socials a {
+      color: var(--clr-sidebar-text); font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    .socials a:hover { color: var(--clr-accent); }
+    .resume-btn {
+      background: #10b981; /* emerald‑500 */
+      padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.8rem;
+      margin-bottom: auto; /* push camera icon to bottom */
+    }
+    .camera-icon {
+      margin-top: 2rem; font-size: 1.8rem; opacity: 0.7;
     }
 
-    nav a {
-      margin-left: 1rem;
-      font-weight: 600;
+    /* ----------  MAIN CONTENT  ---------- */
+    main {
+      flex: 1;
+      padding: 2rem 2.5rem;
+    }
+    section + section { margin-top: 2.5rem; }
+
+    h2.section-title {
+      font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
     }
 
-    main .section {
-      padding: 4rem 1rem;
-      max-width: 1024px;
-      margin: auto;
+    /* ----------  CARD GRID  ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
     }
-
-    h1 {
-      font-size: 2rem;
+    .card {
+      background: var(--clr-card-bg);
+      border: 1px solid #e2e8f0; /* slate‑200 */
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+      transition: transform 0.15s ease;
     }
+    .card:hover { transform: translateY(-3px); }
+    .card-title { font-weight: 600; font-size: 0.95rem; color: var(--clr-accent); margin-bottom: 0.35rem; }
+    .card-desc { font-size: 0.8rem; color: var(--clr-muted); }
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--clr-accent);
-      display: inline-block;
-    }
-
-    ul {
-      list-style: disc;
-      margin-left: 1.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      color: var(--clr-muted);
-    }
-
-    @media (max-width: 640px) {
-      nav a {
-        margin-left: 0.5rem;
-      }
+    /* ============================== */
+    /*        4.  RESPONSIVE          */
+    /* ============================== */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .wrapper { flex-direction: column; }
+      main { padding: 1.5rem; }
     }
   </style>
+
+  <!-- Feather icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div>
-        <h1>Anne Andresen</h1>
-        <p>3D Deep Learning & Computer Vision for Healthcare</p>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Portfolio</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="wrapper">
+    <!-- =============  SIDEBAR  ============= -->
+    <aside class="sidebar">
+      <img src="avatar.jpg" alt="Anne Andresen" class="avatar" />
+      <div class="name">Anne Andresen</div>
+      <div class="tagline">3D DL & CV for Healthcare</div>
 
-  <main>
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>
-        I'm a PhD researcher in deep learning, computer vision, and healthcare—working on transformer‑driven automation of brain‑cancer treatment, including segmentation and dose planning. My goal is to connect ML architecture decisions with meaningful clinical impact.
-      </p>
-    </section>
-
-    <section id="experience" class="section">
-      <h2>Experience</h2>
-      <div>
-        <h3>PhD Researcher – Aarhus University</h3>
-        <p><em>2022 – Present</em></p>
-        <ul>
-          <li>Designed self‑adapting transformer architecture for organ segmentation.</li>
-          <li>Built a 3D Swin‑Transformer model to predict radiotherapy dose distributions as volumetric heatmaps.</li>
-          <li>Developed a fully‑automated radiotherapy‑planning pipeline now under clinical evaluation.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-
-      <div>
-        <h3>CBCT → Synthetic CT via Stable Diffusion</h3>
-        <p>Fine‑tuned diffusion models to generate high‑fidelity synthetic CT volumes from cone‑beam CT for adaptive radiotherapy (in progress).</p>
+      <div class="socials">
+        <a href="mailto:aha.andresen@gmail.com" aria-label="email"><i data-feather="mail"></i></a>
+        <a href="https://github.com/Anne-Andresen" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
+        <a href="https://www.linkedin.com/in/anne-andresen" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+        <a href="https://twitter.com/anne_andresen" target="_blank" aria-label="Twitter"><i data-feather="twitter"></i></a>
       </div>
 
-      <div>
-        <h3>Brain‑Tumor Diagnostics CNN</h3>
-        <p>Classifier that differentiates brain‑tumor sub‑types from MRI; developed during visiting scholarship at University of Cambridge.</p>
-      </div>
+      <a class="resume-btn" href="cv.pdf" target="_blank">Resume</a>
 
-      <div>
-        <h3>Patient‑Specific Proton Treatment‑Plan Prediction</h3>
-        <p>3D Swin‑Transformer regression model achieving &gt;99 % gamma pass rate (3 mm/3 %) when predicting proton dose distributions.</p>
-      </div>
+      <i data-feather="camera" class="camera-icon"></i>
+    </aside>
 
-      <div>
-        <h3>3D GAN in C/CUDA</h3>
-        <p>Hand‑optimised CUDA kernels for volumetric GAN training, reducing run‑time and GPU memory. <em>Nov 2024 – Apr 2025</em></p>
-      </div>
+    <!-- =============  MAIN  ============= -->
+    <main>
+      <!--  Recent GitHub works  -->
+      <section>
+        <h2 class="section-title">Recent Works on GitHub</h2>
+        <div class="grid">
+          <div class="card">
+            <div>
+              <div class="card-title">CBCT → Synthetic CT Diffusion</div>
+              <div class="card-desc">Fine‑tuned Stable Diffusion for adaptive radiotherapy CT generation.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-title">Brain‑Tumor Diagnostics CNN</div>
+              <div class="card-desc">MRI classifier for tumor sub‑typing (Cambridge collab).</div>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-title">Proton Dose 3D Swin‑Transformer</div>
+              <div class="card-desc">Predicts patient‑specific proton dose distribution heatmaps.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-title">Self‑Adapting 3D ViT</div>
+              <div class="card-desc">Scales params to dataset ‑ efficient multi‑modality segmentation.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-title">Volumetric GAN (CUDA)</div>
+              <div class="card-desc">Custom kernels slash training time & memory.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-title">3D Autoencoder (CUDA)</div>
+              <div class="card-desc">High‑throughput recon via handwritten CUDA.</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div>
-        <h3>3D Autoencoder in C/CUDA</h3>
-        <p>Custom 3D autoencoder implemented directly in CUDA/C for high‑throughput reconstruction. <em>Apr 2024 – Dec 2024</em><br/>
-        <a href="https://github.com/Anne-Andresen/MOT" target="_blank">Related GitHub repo</a></p>
-      </div>
+      <!--  Weekly interests / blog style  -->
+      <section>
+        <h2 class="section-title">Weekly Interests</h2>
+        <div class="grid">
+          <div class="card"><div class="card-title">ML Papers 2025 Digest</div></div>
+          <div class="card"><div class="card-title">Learning R for Data Science</div></div>
+          <div class="card"><div class="card-title">Exploring TDD for PyTorch</div></div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-      <div>
-        <h3>Self‑Adapting 3D Vision Transformer</h3>
-        <p>PyTorch model that scales parameters to dataset characteristics, enabling efficient segmentation across modalities. <em>Jan 2023 – Sep 2023</em></p>
-      </div>
-    </section>
-
-    <section id="education" class="section">
-      <h2>Education</h2>
-      <p>PhD, AI in Medicine — Aarhus University, 2022‑2025 (expected)</p>
-      <p>MSc, Biomedical Engineering & Informatics — Aalborg University, 2022</p>
-      <p>BSc, Biomedical Engineering — Aalborg University, 2020</p>
-    </section>
-
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <p>Python, PyTorch, TensorFlow, Transformers, Medical Imaging, CUDA, Docker, Git, Clinical Collaboration</p>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>
-        <a href="cv.pdf" target="_blank">Download my CV (PDF)</a>
-      </p>
-      <ul>
-        <li><a href="https://github.com/Anne-Andresen" target="_blank">GitHub</a></li>
-        <li><a href="mailto:aha.andresen@gmail.com">aha.andresen@gmail.com</a></li>
-      </ul>
-      <p>Location: Aarhus, Denmark</p>
-    </section>
-  </main>
-
-  <footer>
-    &copy; <span id="year"></span> Anne Andresen. All rights reserved.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>feather.replace();</script>
 </body>
 </html>
