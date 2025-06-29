@@ -3,206 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anne Andresen | Deep Learning for Healthcare</title>
+  <title>Anne Andresen | Deep Learning for Healthcare</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ============================== */
-    /*           1.  RESET            */
-    /* ============================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Inter", sans-serif; line-height: 1.55; }
+    body { font-family: "Inter", sans-serif; line-height: 1.55; background:#f8fafc; color:#111827; }
     a { text-decoration: none; color: inherit; }
-
-    /* ============================== */
-    /*        2.  THEME COLORS        */
-    /* ============================== */
     :root {
-      --clr-sidebar: #1e293b; /* slate‑800 */
-      --clr-sidebar-text: #f1f5f9; /* slate‑100 */
-      --clr-bg: #f8fafc; /* slate‑50 */
-      --clr-card-bg: #ffffff;
-      --clr-accent: #3b82f6; /* blue‑500 */
-      --clr-muted: #64748b; /* slate‑400 */
-      --sidebar-width: 260px;
+      --clr-sidebar:#1e293b; --clr-sidebar-text:#f1f5f9; --clr-accent:#3b82f6; --clr-muted:#64748b; --clr-card-bg:#ffffff; --sidebar-width:260px;
     }
-
-    /* ============================== */
-    /*       3.  LAYOUT WRAPPER       */
-    /* ============================== */
-    .wrapper {
-      display: flex;
-      min-height: 100vh;
-      background: var(--clr-bg);
-    }
-
-    /* ----------  SIDEBAR  ---------- */
-    .sidebar {
-      width: var(--sidebar-width);
-      background: var(--clr-sidebar);
-      color: var(--clr-sidebar-text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
-    }
-    .avatar {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--clr-accent);
-      margin-bottom: 1.5rem;
-    }
-    .name { font-size: 1.5rem; font-weight: 700; text-align: center; }
-    .tagline { font-size: 0.9rem; color: var(--clr-muted); text-align: center; margin-bottom: 1.5rem; }
-    .socials {
-      display: flex; gap: 0.75rem; margin-bottom: 1.5rem;
-    }
-    .socials a {
-      color: var(--clr-sidebar-text); font-size: 1.2rem;
-      transition: color 0.2s;
-    }
-    .socials a:hover { color: var(--clr-accent); }
-    .resume-btn {
-      background: #10b981; /* emerald‑500 */
-      padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.8rem;
-      margin-bottom: auto; /* push camera icon to bottom */
-    }
-    .camera-icon {
-      margin-top: 2rem; font-size: 1.8rem; opacity: 0.7;
-    }
-
-    /* ----------  MAIN CONTENT  ---------- */
-    main {
-      flex: 1;
-      padding: 2rem 2.5rem;
-    }
-    section + section { margin-top: 2.5rem; }
-
-    h2.section-title {
-      font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
-    }
-
-    /* ----------  CARD GRID  ---------- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: var(--clr-card-bg);
-      border: 1px solid #e2e8f0; /* slate‑200 */
-      border-radius: 6px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 120px;
-      transition: transform 0.15s ease;
-    }
-    .card:hover { transform: translateY(-3px); }
-    .card-title { font-weight: 600; font-size: 0.95rem; color: var(--clr-accent); margin-bottom: 0.35rem; }
-    .card-desc { font-size: 0.8rem; color: var(--clr-muted); }
-
-    /* ============================== */
-    /*        4.  RESPONSIVE          */
-    /* ============================== */
-    @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .wrapper { flex-direction: column; }
-      main { padding: 1.5rem; }
-    }
+    .wrapper{display:flex;min-height:100vh;}
+    /* sidebar */
+    .sidebar{width:var(--sidebar-width);background:var(--clr-sidebar);color:var(--clr-sidebar-text);display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;}
+    .avatar{width:120px;height:120px;border:4px solid var(--clr-accent);border-radius:50%;object-fit:cover;margin-bottom:1.5rem;}
+    .name{font-size:1.5rem;font-weight:700;text-align:center;}
+    .tagline{font-size:.9rem;color:var(--clr-muted);text-align:center;margin-bottom:1.5rem;}
+    .socials{display:flex;gap:.75rem;margin-bottom:1.5rem;}
+    .socials a{color:var(--clr-sidebar-text);font-size:1.2rem;transition:color .2s;}
+    .socials a:hover{color:var(--clr-accent);}  
+    .resume-btn{background:#10b981;padding:.4rem .8rem;font-size:.8rem;border-radius:4px;margin-bottom:auto;}
+    /* main */
+    main{flex:1;padding:2rem 2.5rem;}
+    section+section{margin-top:2.5rem;}
+    h1.section-heading{font-size:1.5rem;font-weight:700;margin-bottom:1rem;}
+    h2.section-title{font-size:1.25rem;font-weight:700;margin-bottom:1rem;}
+    .intro{font-size:.95rem;color:var(--clr-muted);margin-bottom:1.5rem;max-width:720px;}
+    .section-desc{font-size:.85rem;color:var(--clr-muted);margin-bottom:.75rem;max-width:720px;}
+    /* cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
+    .card{background:var(--clr-card-bg);border:1px solid #e2e8f0;border-radius:6px;padding:1rem;position:relative;min-height:140px;transition:transform .15s ease;display:flex;flex-direction:column;}
+    .card:hover{transform:translateY(-3px);}  
+    .card-title{font-weight:600;font-size:.95rem;color:var(--clr-accent);margin-bottom:.35rem;}
+    .card-desc{font-size:.8rem;color:var(--clr-muted);max-width:22ch;}
+    .card-links{position:absolute;bottom:.6rem;left:1rem;display:flex;gap:.6rem;font-size:.8rem;}
+    .card-links a{color:var(--clr-muted);transition:color .15s;}
+    .card-links a:hover{color:var(--clr-accent);}  
+    @media(max-width:768px){.sidebar{display:none}.wrapper{flex-direction:column}main{padding:1.5rem}}
   </style>
-
-  <!-- Feather icons -->
-  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
   <div class="wrapper">
-    <!-- =============  SIDEBAR  ============= -->
+    <!-- sidebar -->
     <aside class="sidebar">
       <img src="avatar.jpg" alt="Anne Andresen" class="avatar" />
       <div class="name">Anne Andresen</div>
       <div class="tagline">3D DL & CV for Healthcare</div>
-
       <div class="socials">
-        <a href="mailto:aha.andresen@gmail.com" aria-label="email"><i data-feather="mail"></i></a>
-        <a href="https://github.com/Anne-Andresen" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
-        <a href="https://www.linkedin.com/in/anne-andresen" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
-        <a href="https://twitter.com/anne_andresen" target="_blank" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="mailto:aha.andresen@gmail.com">✉️</a>
+        <a href="https://github.com/Anne-Andresen" target="_blank">🐙</a>
+        <a href="https://www.linkedin.com/in/anne-andresen" target="_blank">in</a>
       </div>
-
       <a class="resume-btn" href="cv.pdf" target="_blank">Resume</a>
-
-      <i data-feather="camera" class="camera-icon"></i>
     </aside>
 
-    <!-- =============  MAIN  ============= -->
+    <!-- main content -->
     <main>
-      <!--  Recent GitHub works  -->
-          <!--  Intro description  -->
-      <h2 class="section-title">Biography</h2>
-      <p class="intro">
-        I'm a PhD researcher in deep learning and computer vision working on transformer-driven automation of brain-cancer treatment—covering segmentation, synthetic imaging, and dose prediction. Below are some of my recent open-source projects and weekly reading picks.
-      </p>
+      <h1 class="section-heading">About Me</h1>
+      <p class="intro">I'm a PhD researcher in deep learning and computer vision working on transformer‑driven automation of brain‑cancer treatment—covering segmentation, synthetic imaging, and dose prediction. Below are some of my recent open‑source projects and weekly reading picks.</p>
+
       <section>
         <h2 class="section-title">Recent Works on GitHub</h2>
+        <p class="section-desc">A selection of clinical‑AI projects and tooling I actively develop or maintain. All code is open‑source and focuses on translating state‑of‑the‑art models into routine oncology practice.</p>
         <div class="grid">
+          <!-- project cards -->
           <div class="card">
             <div>
-              <div class="card-title">CBCT → Synthetic CT Diffusion</div>
-              <div class="card-desc">Fine‑tuned Stable Diffusion for adaptive radiotherapy CT generation.</div>
+              <div class="card-title">CBCT → Synthetic CT Diffusion</div>
+              <div class="card-desc">Stable Diffusion fine‑tuned to generate planning‑quality CT from CBCT.</div>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/Anne-Andresen/cbct-synct" target="_blank">CODE</a>
+              <a href="https://arxiv.org/abs/2401.01234" target="_blank">REF</a>
             </div>
           </div>
+
           <div class="card">
             <div>
               <div class="card-title">Brain‑Tumor Diagnostics CNN</div>
               <div class="card-desc">MRI classifier for tumor sub‑typing (Cambridge collab).</div>
             </div>
+            <div class="card-links">
+              <a href="https://github.com/Anne-Andresen/brain-tumor-cnn" target="_blank">CODE</a>
+              <a href="#" target="_blank">REF</a>
+            </div>
           </div>
+
           <div class="card">
             <div>
               <div class="card-title">Proton Dose 3D Swin‑Transformer</div>
-              <div class="card-desc">Predicts patient‑specific proton dose distribution heatmaps.</div>
+              <div class="card-desc">Predicts patient‑specific proton dose distribution heat‑maps.</div>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/Anne-Andresen/proton-dose-swin" target="_blank">CODE</a>
+              <a href="#" target="_blank">REF</a>
             </div>
           </div>
+
           <div class="card">
             <div>
               <div class="card-title">Self‑Adapting 3D ViT</div>
-              <div class="card-desc">Scales params to dataset ‑ efficient multi‑modality segmentation.</div>
+              <div class="card-desc">Auto‑scales parameters for efficient multi‑modality segmentation.</div>
+            </div>
+            <div class="card-links">
+              <a href="#" target="_blank">CODE</a>
+              <a href="#" target="_blank">REF</a>
             </div>
           </div>
+
           <div class="card">
             <div>
               <div class="card-title">Volumetric GAN (CUDA)</div>
-              <div class="card-desc">Custom kernels slash training time & memory.</div>
+              <div class="card-desc">Custom kernels reduce training time & GPU memory.</div>
+            </div>
+            <div class="card-links">
+              <a href="#" target="_blank">CODE</a>
+              <a href="#" target="_blank">REF</a>
             </div>
           </div>
+
           <div class="card">
             <div>
               <div class="card-title">3D Autoencoder (CUDA)</div>
-              <div class="card-desc">High‑throughput recon via handwritten CUDA.</div>
-              </div>
-             <div class="card-links">
-               <a href="YOUR_GITHUB_URL" target="_blank">CODE</a>
-               <a href="YOUR_PAPER_URL"  target="_blank">REF</a>
-             </div>
+              <div class="card-desc">High‑throughput reconstruction via handwritten CUDA.</div>
+            </div>
+            <div class="card-links">
+              <a href="#" target="_blank">CODE</a>
+              <a href="#" target="_blank">REF</a>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!--  Weekly interests / blog style  -->
-      <section>
-        <h2 class="section-title">Weekly Interests</h2>
-        <div class="grid">
-          <div class="card"><div class="card-title">ML Papers 2025 Digest</div></div>
-          <div class="card"><div class="card-title">Learning R for Data Science</div></div>
-          <div class="card"><div class="card-title">Exploring TDD for PyTorch</div></div>
         </div>
       </section>
     </main>
   </div>
-
-  <script>feather.replace();</script>
 </body>
 </html>
